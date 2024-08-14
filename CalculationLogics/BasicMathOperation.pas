@@ -37,7 +37,7 @@ begin
 
 end;
 
-function TBasicMathOperation.Percentage(ANum1: Double; ANum2: Double; AOperator: char): Double;
+function TBasicMathOperation.Percentage(ANum1,ANum2: Double; AOperator: char): Double;
 begin
     case AOperator of
         '+': Result := ANum1 + (ANum1 * (ANum2 / 100));
