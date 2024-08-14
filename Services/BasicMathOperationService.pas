@@ -15,7 +15,7 @@ type
     function Subtract(ANum1, ANum2: double): double;
     function Multiply(ANum1, ANum2: double): double;
     function Divide(ANum1, ANum2: double): double;
-    function Percentage(ANum1, ANum2: double;AOperator:string): double;
+    function Percentage(ANum1, ANum2: double;AOperator:char): double;
   end;
 
 implementation
@@ -43,7 +43,7 @@ begin
    Result:=FBasicOperation.Multiply(ANum1,ANum2);
 end;
 
-function TBasicMathOperationService.Percentage(ANum1, ANum2: double;AOperator:string): double;
+function TBasicMathOperationService.Percentage(ANum1, ANum2: double;AOperator:char): double;
 begin
     Result:=FBasicOperation.Percentage(ANum1,ANum2,AOperator);
 end;
