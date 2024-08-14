@@ -2,7 +2,9 @@ program Calculator_p;
 
 uses
   Vcl.Forms,
-  Calculator_u in 'UI\Calculator_u.pas' {Form1};
+  Calculator_u in 'UI\Calculator_u.pas' {Form1},
+  BasicMathOperationInterface in 'Interfaces\BasicMathOperationInterface.pas',
+  BasicMathOperationService in 'Services\BasicMathOperationService.pas';
 
 {$R *.res}
 
