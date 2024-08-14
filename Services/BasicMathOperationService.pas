@@ -10,12 +10,12 @@ type
   private
     FBasicOperation: IBasicMathOperations;
   public
-   constructor Create(ABasicOperation: IBasicMathOperations);
+   constructor Create(ABasicOperation: TBasicMathOperation);
     function Addition(ANum1, ANum2: double): double;
     function Subtract(ANum1, ANum2: double): double;
     function Multiply(ANum1, ANum2: double): double;
     function Divide(ANum1, ANum2: double): double;
-    function Percentage(ANum1, ANum2: double): double;
+    function Percentage(ANum1, ANum2: double;AOperator:string): double;
   end;
 
 implementation
