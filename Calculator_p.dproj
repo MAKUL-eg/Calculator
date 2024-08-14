@@ -129,6 +129,7 @@
         </DCCReference>
         <DCCReference Include="Interfaces\BasicMathOperationInterface.pas"/>
         <DCCReference Include="CalculationLogics\BasicMathOperation.pas"/>
+        <DCCReference Include="Services\BasicMathOperationService.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
