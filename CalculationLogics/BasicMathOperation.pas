@@ -10,7 +10,7 @@ TBasicMathOperation=class(TInterfacedObject,IBasicMathOperations)
   function Subtract(ANum1,ANum2:double):double;
   function Multiply(ANum1,ANum2:double):double;
   function Divide(ANum1,ANum2:double):double;
-  function Percentage(ANum1:double;ANum2:double;AOperator:char):double;
+  function Percentage(ANum1,ANum2:double;AOperator:char):double;
 end;
 
 
