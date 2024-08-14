@@ -9,7 +9,7 @@ IBasicMathOperations=interface
   function Subtract(ANum1,ANum2:double):double;
   function Multiply(ANum1,ANum2:double):double;
   function Divide(ANum1,ANum2:double):double;
-  function Percentage(ANum1,ANum2:double):double;
+  function Percentage(ANum1,ANum2:double;AOperator:string):double;
 end;
 
 implementation
