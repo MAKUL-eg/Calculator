@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899-12-30 00:00:00.000.040,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_p.dproj</Transaction>
     <Transaction>1899-12-30 00:00:00.000.153,=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.040,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_p.dproj</Transaction>
     <Transaction>1899-12-30 00:00:00.000.085,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_u.dfm</Transaction>
     <Transaction>1899-12-30 00:00:00.000.085,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_u.pas</Transaction>
-    <Transaction>2024-08-14 12:14:18.690,=C:\DelphiProject\Calculator\UI\Calculator_u.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.975,=C:\Users\rchan\Documents\GitHub\Calculator\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.895,C:\Users\rchan\Documents\GitHub\Calculator\Unit1.pas=C:\Users\rchan\Documents\GitHub\Calculator\CalculationLogics\BasicMathOperation.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.690,=C:\DelphiProject\Calculator\UI\Calculator_u.pas</Transaction>
   </Transactions>
 </BorlandProject>
