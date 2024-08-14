@@ -1,0 +1,17 @@
+unit BasicMathOperationInterface;
+
+interface
+
+type
+IBasicMathOperations=interface
+['{A82726A9-A5BE-4885-A7EB-9FE40577A65A}']
+  function Addition(num1,num2:double):double;
+  function Subtract(num1,num2:double):double;
+  function Multiply(num1,num2:double):double;
+  function Divide(num1,num2:double):double;
+  function Percentage(num1,num2:double):double;
+end;
+
+implementation
+
+end.
