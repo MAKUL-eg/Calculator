@@ -2,14 +2,15 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>1899-12-30 00:00:00.000.690,=C:\DelphiProject\Calculator\UI\Calculator_u.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.085,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_u.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.153,=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.085,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_u.dfm</Transaction>
     <Transaction>1899-12-30 00:00:00.000.040,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_p.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.085,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_u.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.085,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_u.dfm</Transaction>
     <Transaction>2024-08-14 14:40:40.031,=C:\DelphiProject\Calculator\Interfaces\BasicMathOperationInterface.pas</Transaction>
     <Transaction>2024-08-14 14:40:58.828,=C:\DelphiProject\Calculator\Unit1.pas</Transaction>
     <Transaction>2024-08-14 14:42:34.360,C:\DelphiProject\Calculator\Services\BasicMathOperationService.pas=C:\DelphiProject\Calculator\Unit1.pas</Transaction>
     <Transaction>2024-08-14 16:07:12.244,=C:\DelphiProject\Calculator\Interfaces\BasicMathOperationInterface.pas</Transaction>
     <Transaction>2024-08-14 16:09:44.721,=C:\DelphiProject\Calculator\Services\BasicMathOperationService.pas</Transaction>
+    <Transaction>2024-08-14 16:46:01.553,=C:\DelphiProject\Calculator\Services\BasicMathOperationService.pas</Transaction>
   </Transactions>
 </BorlandProject>
