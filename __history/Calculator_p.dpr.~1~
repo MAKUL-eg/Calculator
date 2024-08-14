@@ -2,7 +2,7 @@ program Calculator_p;
 
 uses
   Vcl.Forms,
-  Calculator_u in 'UI\Calculator_u.pas' {Form1};
+  Calculator_u in 'Calculator_u.pas' {Form1};
 
 {$R *.res}
 
