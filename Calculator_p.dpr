@@ -7,7 +7,6 @@ uses
   BasicMathOperation in 'CalculationLogics\BasicMathOperation.pas',
   BasicMathOperationService in 'Services\BasicMathOperationService.pas';
 
-
 {$R *.res}
 
 begin
