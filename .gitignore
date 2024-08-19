@@ -30,7 +30,7 @@
 *.dsk
 
 # Delphi history and backups
-*\__history\*
+UI\__history\*
 *\__recovery\*
 *.~*
 
