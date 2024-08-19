@@ -32,6 +32,7 @@ type
     btnDelete: TButton;
     redDisplay: TRichEdit;
     btnEquals: TButton;
+    insidePanel: TPanel;
     procedure NumBtnClick(Sender: TObject);
     procedure OperatorBtnClick(Sender: TObject);
     procedure btnClearClick(Sender: TObject);
@@ -39,6 +40,8 @@ type
     procedure btnDeleteClick(Sender: TObject);
     procedure btnSignClick(Sender: TObject);
     procedure btnPercentClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormResize(Sender: TObject);
   private
     { Private declarations }
     FNum1, FNum2: string;
@@ -232,6 +235,37 @@ begin
   end;
 
   ChangeFontSize(redDisplay);
+end;
+
+procedure TfrmCalculator.FormCreate(Sender: TObject);
+begin
+  Self.Position := poScreenCenter;
+  Self.OnResize := FormResize ;
+  Self.Width:=680;
+  Panel1.width:=680;
+  insidePanel.Width:=680;
+end;
+
+procedure TfrmCalculator.FormResize(Sender: TObject);
+var
+  i: Integer;
+  width: Integer;
+begin
+
+  if Self.width <= 680 then
+  begin
+    Self.width := 680;
+  end
+  else if Self.Height <= 900 then
+  begin
+    Self.Height := 900;
+  end;
+
+  Panel1.width := Self.width+100;
+  Panel1.Height := Self.Height;
+  insidePanel.Left := (Self.width div 2) - (insidePanel.width div 2);
+  insidePanel.Top := (Self.Height div 2) - (insidePanel.Height div 2);
+
 end;
 
 procedure TfrmCalculator.NumBtnClick(Sender: TObject);
