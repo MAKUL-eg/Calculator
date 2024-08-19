@@ -48,6 +48,7 @@ object frmCalculator: TfrmCalculator
         Font.Style = []
         ParentFont = False
         TabOrder = 0
+        OnKeyPress = redDisplayKeyPress
       end
       object btnAdd: TButton
         Left = 317

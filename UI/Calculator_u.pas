@@ -42,6 +42,7 @@ type
     procedure btnPercentClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
+    procedure redDisplayKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
     FNum1, FNum2: string;
@@ -338,5 +339,54 @@ begin
     end;
   end;
 end;
+
+procedure TfrmCalculator.redDisplayKeyPress(Sender: TObject; var Key: Char);
+begin
+  if not(Key in ['0' .. '9', '+', '-', '*', '/', #8]) then
+  begin
+    Key := #0;
+    Exit;
+  end;
+  if Key in ['0' .. '9'] then
+  begin
+    if (FOperator = #0) and (FNum2 = '') then
+      FNum1 := FNum1 + Key
+    else
+      FNum2 := FNum2 + Key;
+  end
+  else if Key in ['+', '-', '÷', 'x'] then
+  begin
+    FOperator := Key;
+    if (FNum1 <> '') and (FNum2 <> '') then
+    begin
+      FResult := 0;
+      FResult := PerformCalcualtion(StrToFloat(FNum1), FOperator, StrToFloat(FNum2));
+      FNum1 := FloatToStr(FResult);
+      FNum2 := '';
+    end;
+    redDisplay.Text := FNum1;
+    redDisplay.Lines.Add(FNum2);
+  end
+  else if Key = #8 then
+  begin
+    if (FOperator = #0) and (FNum2 = '') then
+    begin
+      Delete(FNum1, FNum1.Length, 1);
+      redDisplay.Text := FNum1;
+    end
+    else if (FNum2 = '') and (FOperator <> '') then
+    begin
+      FOperator := #0;
+      redDisplay.Text := FNum1;
+    end
+    else
+    begin
+      Delete(FNum2, FNum2.Length, 1);
+      redDisplay.Text := FNum1 + FOperator;
+      redDisplay.Lines.Add(FNum2);
+    end;
+  end;
+end;
+
 
 end.
