@@ -6,32 +6,33 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.ComCtrls, BasicMathOperation, BasicMathOperationService;
+  Vcl.ComCtrls, BasicMathOperation, BasicMathOperationService, helper_u;
 
 type
   TfrmCalculator = class(TForm)
     Panel1: TPanel;
-    btnClear: TButton;
-    btnSeven: TButton;
-    btnEight: TButton;
-    btnNine: TButton;
-    btnDivide: TButton;
-    btnPercent: TButton;
-    btnFour: TButton;
-    btnOne: TButton;
-    btnFive: TButton;
-    btnTwo: TButton;
-    btnSix: TButton;
-    btnThree: TButton;
-    btnMultiply: TButton;
-    btnSubtract: TButton;
+    insidePanel: TPanel;
     btnAdd: TButton;
-    btnSign: TButton;
-    btnZero: TButton;
-    btnDot: TButton;
+    btnClear: TButton;
     btnDelete: TButton;
-    redDisplay: TRichEdit;
+    btnDivide: TButton;
+    btnDot: TButton;
+    btnEight: TButton;
     btnEquals: TButton;
+    btnFive: TButton;
+    btnFour: TButton;
+    btnMultiply: TButton;
+    btnNine: TButton;
+    btnOne: TButton;
+    btnPercent: TButton;
+    btnSeven: TButton;
+    btnSign: TButton;
+    btnSix: TButton;
+    btnSubtract: TButton;
+    btnThree: TButton;
+    btnTwo: TButton;
+    btnZero: TButton;
+    redDisplay: TRichEdit;
     procedure NumBtnClick(Sender: TObject);
     procedure OperatorBtnClick(Sender: TObject);
     procedure btnClearClick(Sender: TObject);
@@ -39,6 +40,8 @@ type
     procedure btnDeleteClick(Sender: TObject);
     procedure btnSignClick(Sender: TObject);
     procedure btnPercentClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormResize(Sender: TObject);
   private
     { Private declarations }
     FNum1, FNum2: string;
@@ -47,86 +50,14 @@ type
     procedure DisplayOnOperatorClick;
     function PerformCalcualtion(ANum1: Double; Aoperator: char;
       ANum2: Double): Double;
-  public
-    { Public declarations }
 
   end;
 
 var
+  frmHelper: THelper;
   frmCalculator: TfrmCalculator;
-function RemoveLastChar(str: string): string;
-procedure ChangeFontSize(var ARichEdit: TRichEdit);
-function ToggleSign(AOperand: string): string;
-function GetCharCount(str, substring: string): integer;
-function HandleInput(Sender: TObject; var AOperand: string): string;
 
 implementation
-
-function RemoveLastChar(str: string): string;
-begin
-  Result := Copy(str, 1, str.Length - 1);
-end;
-
-procedure ChangeFontSize(var ARichEdit: TRichEdit);
-begin
-  ARichEdit.SelStart := ARichEdit.Perform(EM_LINEINDEX, 1, 0);
-  ARichEdit.SelLength := Length(ARichEdit.Lines[1]);
-  ARichEdit.SelAttributes.Size := 18;
-end;
-
-function ToggleSign(AOperand: string): string;
-begin
-
-  if AOperand[1] = '-' then
-  begin
-    AOperand := Copy(AOperand, 2, AOperand.Length);
-  end
-  else
-  begin
-    AOperand := '-' + AOperand;
-  end;
-
-  Result := AOperand;
-end;
-
-function GetCharCount(str, substring: string): integer;
-var
-  vCount: integer;
-begin
-  vCount := 0;
-  for var index := 1 to str.Length do
-  begin
-    if str[index] = substring then
-    begin
-      Inc(vCount);
-    end;
-
-  end;
-
-  Result := vCount;
-end;
-
-function HandleInput(Sender: TObject; var AOperand: string): string;
-var
-  vButton: TButton;
-begin
-  vButton := TButton(Sender);
-
-  if (vButton.Caption = '.') and (AOperand = '') then
-  // initializing the Fnum1 to 0 if user press .
-  begin
-    AOperand := '0.';
-  end
-  else if vButton.Caption <> '.' then // all characters other than .
-  begin
-    AOperand := AOperand + vButton.Caption;
-  end
-  else if (vButton.Caption = '.') and (GetCharCount(AOperand, '.') = 0) then
-  // allowing only single .
-  begin
-    AOperand := AOperand + vButton.Caption;
-  end;
-end;
 
 {$R *.dfm}
 
@@ -141,95 +72,164 @@ end;
 
 procedure TfrmCalculator.btnDeleteClick(Sender: TObject);
 begin
-
-  if (FOperator = '') and (FNum2 = '') then
-  begin
-    FNum1 := RemoveLastChar(FNum1);
-  end
-  else
-  begin
-    FNum2 := RemoveLastChar(FNum2);
+  frmHelper := THelper.Create;
+  try
+    with frmHelper do
+      if (FOperator = '') and (FNum2 = '') then
+      begin
+        FNum1 := RemoveLastChar(FNum1);
+      end
+      else
+      begin
+        FNum2 := RemoveLastChar(FNum2);
+      end;
+    DisplayOnOperatorClick;
+  finally
+    frmHelper.Free;
   end;
 
-  DisplayOnOperatorClick;
 end;
 
 procedure TfrmCalculator.btnEqualsClick(Sender: TObject);
 begin
-  FResult := PerformCalcualtion(StrToFloat(FNum1), FOperator,
-    StrToFloat(FNum2));
-  redDisplay.Clear;
-
-  redDisplay.Text := FNum1 + FOperator + FNum2 + '=';
-  redDisplay.Lines.Add(FloatToStr(FResult));
-  ChangeFontSize(redDisplay);
-  FNum1 := FloatToStr(FResult);
+  frmHelper := THelper.Create;
+  with frmHelper do
+  begin
+  if NumberLength(Sender,redDisplay) then
+  begin
+    FResult := PerformCalcualtion(StrToFloat(FNum1), FOperator,
+      StrToFloat(FNum2));
+    redDisplay.Clear;
+    redDisplay.Text := FNum1 + FOperator + FNum2 + '=';
+    redDisplay.Lines.Add(FloatToStr(FResult));
+    ChangeFontSize(redDisplay);
+    FNum1 := FloatToStr(FResult);
+  end;
+  end;
 end;
 
 procedure TfrmCalculator.btnPercentClick(Sender: TObject);
 var
   vMathOperation: TBasicMathOperationService;
 begin
-  vMathOperation := TBasicMathOperationService.Create
-    (TBasicMathOperation.Create);
-  FResult := vMathOperation.Percentage(StrToFloat(FNum1), StrToFloat(FNum2),
-    FOperator);
-  redDisplay.Clear;
-  redDisplay.Text := FNum1 + FOperator + FNum2 + '=';
-  redDisplay.Lines.Add(FloatToStr(FResult));
-  ChangeFontSize(redDisplay);
-  FNum1 := FloatToStr(FResult);
+  frmHelper := THelper.Create;
+  with frmHelper do
+  begin
+   if NumberLength(Sender,redDisplay) then
+   begin
+    vMathOperation := TBasicMathOperationService.Create
+      (TBasicMathOperation.Create);
+    FResult := vMathOperation.Percentage(StrToFloat(FNum1), StrToFloat(FNum2),
+      FOperator);
+    redDisplay.Clear;
+    redDisplay.Text := FNum1 + FOperator + FNum2 + '=';
+    redDisplay.Lines.Add(FloatToStr(FResult));
+    ChangeFontSize(redDisplay);
+    FNum1 := FloatToStr(FResult);
+  end;
+  end;
+
 end;
 
 procedure TfrmCalculator.btnSignClick(Sender: TObject);
 begin
+  frmHelper := THelper.Create;
+  with frmHelper do
+  begin
+   if NumberLength(Sender,redDisplay) then
+   begin
+    if (FOperator = '') and (FNum2 = '') then
+    begin
+      FNum1 := ToggleSign(FNum1);
+    end
+    else
+    begin
+      FNum2 := ToggleSign(FNum2);
+    end;
 
-  if (FOperator = '') and (FNum2 = '') then
-  begin
-    FNum1 := ToggleSign(FNum1);
-  end
-  else
-  begin
-    FNum2 := ToggleSign(FNum2);
+    DisplayOnOperatorClick;
   end;
-
-  DisplayOnOperatorClick;
+  end;
 end;
 
 procedure TfrmCalculator.DisplayOnOperatorClick;
 begin
-  redDisplay.Clear;
+  frmHelper := THelper.Create;
 
-  if (FOperator = '') and (FNum2 = '') then
+  with frmHelper do
   begin
-    redDisplay.Text := ' ';
-    redDisplay.Lines.Add(FNum1);
+
+
+    redDisplay.Clear;
+
+    if (FOperator = '') and (FNum2 = '') then
+    begin
+      redDisplay.Text := ' ';
+      redDisplay.Lines.Add(FNum1);
+    end
+    else
+    begin
+      redDisplay.Text := FNum1 + FOperator;
+      redDisplay.Lines.Add(FNum2);
+    end;
+
+    ChangeFontSize(redDisplay);
+
+  end;
+end;
+
+procedure TfrmCalculator.FormCreate(Sender: TObject);
+begin
+  Self.Position := poScreenCenter;
+  Self.OnResize := FormResize;
+end;
+
+procedure TfrmCalculator.FormResize(Sender: TObject);
+var
+  i: Integer;
+  width: Integer;
+begin
+
+
+  if Self.width <= 453 then
+  begin
+    Self.width := 453;
   end
-  else
-  begin
-    redDisplay.Text := FNum1 + FOperator;
-    redDisplay.Lines.Add(FNum2);
+  else if Self.Height<=900 then begin
+     Self.Height:=900;
   end;
 
-  ChangeFontSize(redDisplay);
+    Panel1.width := Self.width;
+    Panel1.Height := Self.Height;
+    insidePanel.Left := (Self.width div 2) - (insidePanel.width div 2);
+    insidePanel.Top := (Self.Height div 2) - (insidePanel.Height div 2);
+
+
+
 end;
 
 procedure TfrmCalculator.NumBtnClick(Sender: TObject);
 var
   vButton: TButton;
 begin
-  vButton := TButton(Sender);
+  frmHelper := THelper.Create;
+  with frmHelper do
+  begin
 
-  if FOperator = '' then // handling num1
-  begin
-    HandleInput(Sender, FNum1);
-  end
-  else // handling num2
-  begin
-    HandleInput(Sender, FNum2);
+    vButton := TButton(Sender);
+
+    if FOperator = '' then // handling num1
+    begin
+      HandleInput(Sender, FNum1,redDisplay);
+    end
+    else // handling num2
+    begin
+      HandleInput(Sender, FNum2,redDisplay);
+    end;
+
+    DisplayOnOperatorClick;
+
   end;
-
-  DisplayOnOperatorClick;
 end;
 
 procedure TfrmCalculator.OperatorBtnClick(Sender: TObject);

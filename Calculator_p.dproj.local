@@ -1,17 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899-12-30 00:00:00.000.714,=C:\DelphiProject\Calculator\.gitignore.txt</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.520,=C:\DelphiProject\Calculator\.gitignore</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.085,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_u.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.040,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_p.dproj=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.085,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_u.pas=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.085,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_u.dfm=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.716,=C:\Users\rchan\Documents\GitHub\Calculator\Interfaces\BasicMathOperationInterface.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.153,=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.828,=C:\DelphiProject\Calculator\Unit1.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.721,=C:\DelphiProject\Calculator\Services\BasicMathOperationService.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.031,=C:\DelphiProject\Calculator\Interfaces\BasicMathOperationInterface.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.085,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_u.dfm</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.244,=C:\DelphiProject\Calculator\Interfaces\BasicMathOperationInterface.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.185,=C:\Users\rchan\Documents\GitHub\Calculator\Services\BasicMathOperationService.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.973,=C:\Users\rchan\Documents\GitHub\Calculator\CalculationLogics\BasicMathOperation.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.975,=C:\Users\rchan\Documents\GitHub\Calculator\Unit1.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.690,=C:\DelphiProject\Calculator\UI\Calculator_u.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.360,C:\DelphiProject\Calculator\Services\BasicMathOperationService.pas=C:\DelphiProject\Calculator\Unit1.pas</Transaction>
-    <Transaction>2024-08-16 12:17:10.714,=C:\DelphiProject\Calculator\.gitignore</Transaction>
-  </Transactions>
+    <Transaction>1899-12-30 00:00:00.000.895,C:\Users\rchan\Documents\GitHub\Calculator\CalculationLogics\BasicMathOperation.pas=C:\Users\rchan\Documents\GitHub\Calculator\Unit1.pas</Transaction>
+    <Transaction>2024-08-19 10:22:20.929,=C:\Users\rchan\Documents\GitHub\Calculator\Unit1.pas</Transaction>
+    <Transaction>2024-08-19 10:22:34.373,C:\Users\rchan\Documents\GitHub\Calculator\Helper.pas=C:\Users\rchan\Documents\GitHub\Calculator\Unit1.pas</Transaction>
+    <Transaction>2024-08-19 10:22:39.748,C:\Users\rchan\Documents\GitHub\Calculator\Helper\Helper.pas=C:\Users\rchan\Documents\GitHub\Calculator\Helper.pas</Transaction>
+    <Transaction>2024-08-19 10:24:29.042,C:\Users\rchan\Documents\GitHub\Calculator\Helper\helper_u.pas=C:\Users\rchan\Documents\GitHub\Calculator\Helper\Helper.pas</Transaction>
+  </Transactions>  <ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="CalculationLogics"/>
+    <File Path="CalculationLogics\BasicMathOperation.pas"/>
+    <File Path="Helper"/>
+    <File Path="Helper\helper_u.pas"/>
+    <File Path="Interfaces"/>
+    <File Path="Interfaces\BasicMathOperationInterface.pas"/>
+    <File Path="Services"/>
+    <File Path="Services\BasicMathOperationService.pas"/>
+    <File Path="UI"/>
+    <File Path="UI\Calculator_u.pas"/>
+    <File Path="UI\Calculator_u.dfm"/>
+  </ProjectSortOrder>
 </BorlandProject>

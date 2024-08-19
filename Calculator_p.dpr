@@ -5,7 +5,8 @@ uses
   Calculator_u in 'UI\Calculator_u.pas' {Form1},
   BasicMathOperationInterface in 'Interfaces\BasicMathOperationInterface.pas',
   BasicMathOperation in 'CalculationLogics\BasicMathOperation.pas',
-  BasicMathOperationService in 'Services\BasicMathOperationService.pas';
+  BasicMathOperationService in 'Services\BasicMathOperationService.pas',
+  helper_u in 'Helper\helper_u.pas';
 
 {$R *.res}
 

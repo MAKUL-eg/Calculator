@@ -130,7 +130,7 @@
         <DCCReference Include="Interfaces\BasicMathOperationInterface.pas"/>
         <DCCReference Include="CalculationLogics\BasicMathOperation.pas"/>
         <DCCReference Include="Services\BasicMathOperationService.pas"/>
-        <None Include=".gitignore"/>
+        <DCCReference Include="Helper\helper_u.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -153,12 +153,6 @@
                 </Source>
             </Delphi.Personality>
             <Deployment Version="4">
-                <DeployFile LocalName=".gitignore" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="Win32\Debug\Calculator_p.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>Calculator_p.exe</RemoteName>
@@ -823,6 +817,9 @@
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="Win64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64x">
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
