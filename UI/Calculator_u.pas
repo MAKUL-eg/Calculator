@@ -240,13 +240,13 @@ var
 begin
   vButton := TButton(Sender);
 
-  if FOperator = #0 then // handling num1
+  if (FOperator = #0) and (FNum1.Length <= 9) then // handling num1
   begin
     HandleInput(Sender, FNum1);
   end
-  else // handling num2
+  else if (FOperator <> #0) and (FNum2.Length <= 9) then // handling num2
   begin
-    HandleInput(Sender, FNum2);
+      HandleInput(Sender, FNum2);
   end;
 
   DisplayOnOperatorClick;

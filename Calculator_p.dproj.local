@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899-12-30 00:00:00.000.714,=C:\DelphiProject\Calculator\.gitignore.txt</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.714,=C:\DelphiProject\Calculator\.gitignore</Transaction>
     <Transaction>1899-12-30 00:00:00.000.520,=C:\DelphiProject\Calculator\.gitignore</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.085,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_u.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.153,=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.085,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_u.pas=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.360,C:\DelphiProject\Calculator\Unit1.pas=C:\DelphiProject\Calculator\Services\BasicMathOperationService.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.828,=C:\DelphiProject\Calculator\Unit1.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.721,=C:\DelphiProject\Calculator\Services\BasicMathOperationService.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.031,=C:\DelphiProject\Calculator\Interfaces\BasicMathOperationInterface.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.085,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_u.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.153,=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.714,=C:\DelphiProject\Calculator\.gitignore.txt</Transaction>
     <Transaction>1899-12-30 00:00:00.000.244,=C:\DelphiProject\Calculator\Interfaces\BasicMathOperationInterface.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.031,=C:\DelphiProject\Calculator\Interfaces\BasicMathOperationInterface.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.085,C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\CalculatorUsingDelphi\Calculator_u.dfm=C:\Users\makul\OneDrive - EG A S\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
     <Transaction>1899-12-30 00:00:00.000.690,=C:\DelphiProject\Calculator\UI\Calculator_u.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.360,C:\DelphiProject\Calculator\Services\BasicMathOperationService.pas=C:\DelphiProject\Calculator\Unit1.pas</Transaction>
-    <Transaction>2024-08-16 12:17:10.714,=C:\DelphiProject\Calculator\.gitignore</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.721,=C:\DelphiProject\Calculator\Services\BasicMathOperationService.pas</Transaction>
   </Transactions>
 </BorlandProject>
