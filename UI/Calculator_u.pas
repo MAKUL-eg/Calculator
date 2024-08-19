@@ -72,40 +72,48 @@ end;
 
 procedure TfrmCalculator.btnDeleteClick(Sender: TObject);
 begin
-  frmHelper := THelper.Create;
-  try
-    with frmHelper do
-      if (FOperator = '') and (FNum2 = '') then
-      begin
-        FNum1 := RemoveLastChar(FNum1);
-      end
-      else
-      begin
-        FNum2 := RemoveLastChar(FNum2);
-      end;
-    DisplayOnOperatorClick;
-  finally
-    frmHelper.Free;
+
+  if (FOperator = #0) and (FNum2 = '') then
+  begin
+    FNum1 := RemoveLastChar(FNum1);
+  end
+  else if (FOperator <> #0) and (FNum2 = '') then
+  begin
+    FOperator := #0;
+  end
+  else
+  begin
+    FNum2 := RemoveLastChar(FNum2);
   end;
 
 end;
 
 procedure TfrmCalculator.btnEqualsClick(Sender: TObject);
 begin
-  frmHelper := THelper.Create;
-  with frmHelper do
+  redDisplay.Clear;
+  if (FNum1 = '') and (FOperator = #0) and (FNum2 = '') then
   begin
-  if NumberLength(Sender,redDisplay) then
+    Exit;
+  end
+  else if (FNum1 <> '') and (FOperator = #0) and (FNum2 = '') then
+  begin
+    redDisplay.Text := ' ';
+    redDisplay.Lines.Add(FNum1);
+  end
+  else if (FNum1 <> '') and (FOperator <> #0) and (FNum2 = '') then
+  begin
+    redDisplay.Text := ' ';
+    redDisplay.Lines.Add(FNum1);
+  end
+  else
   begin
     FResult := PerformCalcualtion(StrToFloat(FNum1), FOperator,
       StrToFloat(FNum2));
-    redDisplay.Clear;
     redDisplay.Text := FNum1 + FOperator + FNum2 + '=';
     redDisplay.Lines.Add(FloatToStr(FResult));
-    ChangeFontSize(redDisplay);
     FNum1 := FloatToStr(FResult);
   end;
-  end;
+  ChangeFontSize(redDisplay);
 end;
 
 procedure TfrmCalculator.btnPercentClick(Sender: TObject);
@@ -138,28 +146,22 @@ begin
   begin
    if NumberLength(Sender,redDisplay) then
    begin
-    if (FOperator = '') and (FNum2 = '') then
-    begin
-      FNum1 := ToggleSign(FNum1);
-    end
-    else
-    begin
-      FNum2 := ToggleSign(FNum2);
-    end;
-
+   if (FOperator = #0) and (FNum2 = '') then
+  begin
+    FNum1 := ToggleSign(FNum1);
+  end
+  else
+  begin
+    FNum2 := ToggleSign(FNum2);
+  end;
     DisplayOnOperatorClick;
   end;
-  end;
+  
 end;
 
 procedure TfrmCalculator.DisplayOnOperatorClick;
 begin
   frmHelper := THelper.Create;
-
-  with frmHelper do
-  begin
-
-
     redDisplay.Clear;
 
     if (FOperator = '') and (FNum2 = '') then
@@ -218,17 +220,16 @@ begin
 
     vButton := TButton(Sender);
 
-    if FOperator = '' then // handling num1
-    begin
-      HandleInput(Sender, FNum1,redDisplay);
-    end
-    else // handling num2
-    begin
-      HandleInput(Sender, FNum2,redDisplay);
+     if (FOperator = #0) and (FNum1.Length <= 9) then // handling num1
+  begin
+    HandleInput(Sender, FNum1);
+  end
+  else if (FOperator <> #0) and (FNum2.Length <= 9) then // handling num2
+  begin
+      HandleInput(Sender, FNum2);
     end;
 
     DisplayOnOperatorClick;
-
   end;
 end;
 
@@ -275,7 +276,7 @@ begin
         Result := Subtract(ANum1, ANum2);
       'x':
         Result := Multiply(ANum1, ANum2);
-      '÷':
+      'ï¿½':
         Result := Divide(ANum1, ANum2);
     else
       begin
