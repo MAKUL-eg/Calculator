@@ -146,6 +146,10 @@ begin
   begin
     FNum1 := RemoveLastChar(FNum1);
   end
+  else if (FOperator <> '') and (FNum2 = '') then
+  begin
+    FOperator := #0;
+  end
   else
   begin
     FNum2 := RemoveLastChar(FNum2);
@@ -156,14 +160,30 @@ end;
 
 procedure TfrmCalculator.btnEqualsClick(Sender: TObject);
 begin
-  FResult := PerformCalcualtion(StrToFloat(FNum1), FOperator,
-    StrToFloat(FNum2));
   redDisplay.Clear;
-
-  redDisplay.Text := FNum1 + FOperator + FNum2 + '=';
-  redDisplay.Lines.Add(FloatToStr(FResult));
+  if (FNum1 = '') and (FOperator = '') and (FNum2 = '') then
+  begin
+    Exit;
+  end
+  else if (FNum1 <> '') and (FOperator = #0) and (FNum2 = '') then
+  begin
+    redDisplay.Text := ' ';
+    redDisplay.Lines.Add(FNum1);
+  end
+  else if (FNum1 <> '') and (FOperator <> #0) and (FNum2 = '') then
+  begin
+    redDisplay.Text := ' ';
+    redDisplay.Lines.Add(FNum1);
+  end
+  else
+  begin
+    FResult := PerformCalcualtion(StrToFloat(FNum1), FOperator,
+      StrToFloat(FNum2));
+    redDisplay.Text := FNum1 + FOperator + FNum2 + '=';
+    redDisplay.Lines.Add(FloatToStr(FResult));
+    FNum1 := FloatToStr(FResult);
+  end;
   ChangeFontSize(redDisplay);
-  FNum1 := FloatToStr(FResult);
 end;
 
 procedure TfrmCalculator.btnPercentClick(Sender: TObject);
