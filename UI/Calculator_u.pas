@@ -113,16 +113,16 @@ begin
   vButton := TButton(Sender);
 
   if (vButton.Caption = '.') and (AOperand = '') then
-  // initializing the Fnum1 to 0 if user press .
+  // initializing the Fnum1 to 0 if user press "."
   begin
     AOperand := '0.';
   end
-  else if vButton.Caption <> '.' then // all characters other than .
+  else if vButton.Caption <> '.' then // all characters other than "."
   begin
     AOperand := AOperand + vButton.Caption;
   end
   else if (vButton.Caption = '.') and (GetCharCount(AOperand, '.') = 0) then
-  // allowing only single .
+  // allowing only single "."
   begin
     AOperand := AOperand + vButton.Caption;
   end;
@@ -142,9 +142,13 @@ end;
 procedure TfrmCalculator.btnDeleteClick(Sender: TObject);
 begin
 
-  if (FOperator = '') and (FNum2 = '') then
+  if (FOperator = #0) and (FNum2 = '') then
   begin
     FNum1 := RemoveLastChar(FNum1);
+  end
+  else if (FOperator <> #0) and (FNum2 = '') then
+  begin
+    FOperator := #0;
   end
   else
   begin
@@ -156,14 +160,30 @@ end;
 
 procedure TfrmCalculator.btnEqualsClick(Sender: TObject);
 begin
-  FResult := PerformCalcualtion(StrToFloat(FNum1), FOperator,
-    StrToFloat(FNum2));
   redDisplay.Clear;
-
-  redDisplay.Text := FNum1 + FOperator + FNum2 + '=';
-  redDisplay.Lines.Add(FloatToStr(FResult));
+  if (FNum1 = '') and (FOperator = #0) and (FNum2 = '') then
+  begin
+    Exit;
+  end
+  else if (FNum1 <> '') and (FOperator = #0) and (FNum2 = '') then
+  begin
+    redDisplay.Text := ' ';
+    redDisplay.Lines.Add(FNum1);
+  end
+  else if (FNum1 <> '') and (FOperator <> #0) and (FNum2 = '') then
+  begin
+    redDisplay.Text := ' ';
+    redDisplay.Lines.Add(FNum1);
+  end
+  else
+  begin
+    FResult := PerformCalcualtion(StrToFloat(FNum1), FOperator,
+      StrToFloat(FNum2));
+    redDisplay.Text := FNum1 + FOperator + FNum2 + '=';
+    redDisplay.Lines.Add(FloatToStr(FResult));
+    FNum1 := FloatToStr(FResult);
+  end;
   ChangeFontSize(redDisplay);
-  FNum1 := FloatToStr(FResult);
 end;
 
 procedure TfrmCalculator.btnPercentClick(Sender: TObject);
@@ -184,7 +204,7 @@ end;
 procedure TfrmCalculator.btnSignClick(Sender: TObject);
 begin
 
-  if (FOperator = '') and (FNum2 = '') then
+  if (FOperator = #0) and (FNum2 = '') then
   begin
     FNum1 := ToggleSign(FNum1);
   end
@@ -200,7 +220,7 @@ procedure TfrmCalculator.DisplayOnOperatorClick;
 begin
   redDisplay.Clear;
 
-  if (FOperator = '') and (FNum2 = '') then
+  if (FOperator = #0) and (FNum2 = '') then
   begin
     redDisplay.Text := ' ';
     redDisplay.Lines.Add(FNum1);
@@ -220,7 +240,7 @@ var
 begin
   vButton := TButton(Sender);
 
-  if FOperator = '' then // handling num1
+  if FOperator = #0 then // handling num1
   begin
     HandleInput(Sender, FNum1);
   end
