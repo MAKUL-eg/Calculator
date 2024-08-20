@@ -46,10 +46,10 @@ type
   private
     { Private declarations }
     FNum1, FNum2: string;
-    FOperator: char;
+    FOperator: Char;
     FResult: Double;
     procedure DisplayOnOperatorClick;
-    function PerformCalcualtion(ANum1: Double; Aoperator: char;
+    function PerformCalcualtion(ANum1: Double; Aoperator: Char;
       ANum2: Double): Double;
   public
     { Public declarations }
@@ -80,7 +80,6 @@ end;
 
 function ToggleSign(AOperand: string): string;
 begin
-
   if AOperand[1] = '-' then
   begin
     AOperand := Copy(AOperand, 2, AOperand.Length);
@@ -89,7 +88,6 @@ begin
   begin
     AOperand := '-' + AOperand;
   end;
-
   Result := AOperand;
 end;
 
@@ -145,175 +143,217 @@ end;
 
 procedure TfrmCalculator.btnDeleteClick(Sender: TObject);
 begin
+  try
+    if (FOperator = #0) and (FNum2 = '') then
+    begin
+      FNum1 := RemoveLastChar(FNum1);
+    end
+    else if (FOperator <> #0) and (FNum2 = '') then
+    begin
+      FOperator := #0;
+    end
+    else
+    begin
+      FNum2 := RemoveLastChar(FNum2);
+    end;
+    DisplayOnOperatorClick;
+  except
+    begin
+      MessageDlg('Some error occured', mtError, [mbOk], 0);
+    end;
 
-  if (FOperator = #0) and (FNum2 = '') then
-  begin
-    FNum1 := RemoveLastChar(FNum1);
-  end
-  else if (FOperator <> #0) and (FNum2 = '') then
-  begin
-    FOperator := #0;
-  end
-  else
-  begin
-    FNum2 := RemoveLastChar(FNum2);
   end;
-
-  DisplayOnOperatorClick;
 end;
 
 procedure TfrmCalculator.btnEqualsClick(Sender: TObject);
 begin
-  redDisplay.Clear;
-  if (FNum1 = '') and (FOperator = #0) and (FNum2 = '') then
-  begin
-    Exit;
-  end
-  else if (FNum1 <> '') and (FOperator = #0) and (FNum2 = '') then
-  begin
-    redDisplay.Text := ' ';
-    redDisplay.Lines.Add(FNum1);
-  end
-  else if (FNum1 <> '') and (FOperator <> #0) and (FNum2 = '') then
-  begin
-    redDisplay.Text := ' ';
-    redDisplay.Lines.Add(FNum1);
-  end
-  else
-  begin
-    FResult := PerformCalcualtion(StrToFloat(FNum1), FOperator,
-      StrToFloat(FNum2));
-    redDisplay.Text := FNum1 + FOperator + FNum2 + '=';
-    redDisplay.Lines.Add(FloatToStr(FResult));
-    FNum1 := FloatToStr(FResult);
+  try
+    redDisplay.Clear;
+    if (FNum1 = '') and (FOperator = #0) and (FNum2 = '') then
+    begin
+      Exit;
+    end
+    else if (FNum1 <> '') and (FOperator = #0) and (FNum2 = '') then
+    begin
+      redDisplay.Text := ' ';
+      redDisplay.Lines.Add(FNum1);
+    end
+    else if (FNum1 <> '') and (FOperator <> #0) and (FNum2 = '') then
+    begin
+      redDisplay.Text := ' ';
+      redDisplay.Lines.Add(FNum1);
+    end
+    else
+    begin
+      FResult := PerformCalcualtion(StrToFloat(FNum1), FOperator,
+        StrToFloat(FNum2));
+      redDisplay.Text := FNum1 + FOperator + FNum2 + '=';
+      redDisplay.Lines.Add(FloatToStr(FResult));
+      FNum1 := FloatToStr(FResult);
+    end;
+    ChangeFontSize(redDisplay);
+  except on E:Exception do
+    begin
+      MessageDlg('Invalid equation', mtError, [mbOk], 0);
+    end;
   end;
-  ChangeFontSize(redDisplay);
 end;
 
 procedure TfrmCalculator.btnPercentClick(Sender: TObject);
 var
   vMathOperation: TBasicMathOperationService;
 begin
-  vMathOperation := TBasicMathOperationService.Create
-    (TBasicMathOperation.Create);
-  FResult := vMathOperation.Percentage(StrToFloat(FNum1), StrToFloat(FNum2),
-    FOperator);
-  redDisplay.Clear;
-  redDisplay.Text := FNum1 + FOperator + FNum2 + '=';
-  redDisplay.Lines.Add(FloatToStr(FResult));
-  ChangeFontSize(redDisplay);
-  FNum1 := FloatToStr(FResult);
+  try
+    vMathOperation := TBasicMathOperationService.Create
+      (TBasicMathOperation.Create);
+    FResult := vMathOperation.Percentage(StrToFloat(FNum1), StrToFloat(FNum2),
+      FOperator);
+    redDisplay.Clear;
+    redDisplay.Text := FNum1 + FOperator + FNum2 + '=';
+    redDisplay.Lines.Add(FloatToStr(FResult));
+    ChangeFontSize(redDisplay);
+    FNum1 := FloatToStr(FResult);
+  except
+    on E: Exception do
+    begin
+      MessageDlg('Some error occured: ' + E.Message, mtError, [mbOk], 0);
+    end;
+  end;
 end;
 
 procedure TfrmCalculator.btnSignClick(Sender: TObject);
 begin
-
-  if (FOperator = #0) and (FNum2 = '') then
-  begin
-    FNum1 := ToggleSign(FNum1);
-  end
-  else
-  begin
-    FNum2 := ToggleSign(FNum2);
+  try
+    if (FOperator = #0) and (FNum2 = '') then
+    begin
+      FNum1 := ToggleSign(FNum1);
+    end
+    else
+    begin
+      FNum2 := ToggleSign(FNum2);
+    end;
+    DisplayOnOperatorClick;
+  except
+    on E: Exception do
+    begin
+      MessageDlg('Some error occured: ' + E.Message, mtError, [mbOk], 0);
+    end;
   end;
-
-  DisplayOnOperatorClick;
 end;
 
 procedure TfrmCalculator.DisplayOnOperatorClick;
 begin
   redDisplay.Clear;
-
-  if (FOperator = #0) and (FNum2 = '') then
-  begin
-    redDisplay.Text := ' ';
-    redDisplay.Lines.Add(FNum1);
-  end
-  else
-  begin
-    redDisplay.Text := FNum1 + FOperator;
-    redDisplay.Lines.Add(FNum2);
+  try
+    if (FOperator = #0) and (FNum2 = '') then
+    begin
+      redDisplay.Text := ' ';
+      redDisplay.Lines.Add(FNum1);
+    end
+    else
+    begin
+      redDisplay.Text := FNum1 + FOperator;
+      redDisplay.Lines.Add(FNum2);
+    end;
+    ChangeFontSize(redDisplay);
+  except
+    on E: Exception do
+    begin
+      MessageDlg('Some error occured: ' + E.Message, mtError, [mbOk], 0);
+    end;
   end;
-
-  ChangeFontSize(redDisplay);
 end;
 
 procedure TfrmCalculator.FormCreate(Sender: TObject);
 begin
   Self.Position := poScreenCenter;
-  Self.OnResize := FormResize ;
-  Self.Width:=680;
-  Panel1.width:=680;
-  insidePanel.Width:=680;
+  Self.OnResize := FormResize;
+  Self.Width := 680;
+  Panel1.Width := 680;
+  insidePanel.Width := 680;
 end;
 
 procedure TfrmCalculator.FormResize(Sender: TObject);
 var
-  i: Integer;
-  width: Integer;
+  i: integer;
+  Width: integer;
 begin
-
-  if Self.width <= 680 then
-  begin
-    Self.width := 680;
-  end
-  else if Self.Height <= 900 then
-  begin
-    Self.Height := 900;
+  try
+    if Self.Width <= 680 then
+    begin
+      Self.Width := 680;
+    end
+    else if Self.Height <= 900 then
+    begin
+      Self.Height := 900;
+    end;
+    Panel1.Width := Self.Width + 100;
+    Panel1.Height := Self.Height;
+    insidePanel.Left := (Self.Width div 2) - (insidePanel.Width div 2);
+    insidePanel.Top := (Self.Height div 2) - (insidePanel.Height div 2);
+  except
+    on E: Exception do
+    begin
+      MessageDlg('Some error occured: ' + E.Message, mtError, [mbOk], 0);
+    end;
   end;
-
-  Panel1.width := Self.width+100;
-  Panel1.Height := Self.Height;
-  insidePanel.Left := (Self.width div 2) - (insidePanel.width div 2);
-  insidePanel.Top := (Self.Height div 2) - (insidePanel.Height div 2);
-
 end;
 
 procedure TfrmCalculator.NumBtnClick(Sender: TObject);
 var
   vButton: TButton;
 begin
-  vButton := TButton(Sender);
-
-  if (FOperator = #0) and (FNum1.Length <= 9) then // handling num1
-  begin
-    HandleInput(Sender, FNum1);
-  end
-  else if (FOperator <> #0) and (FNum2.Length <= 9) then // handling num2
-  begin
+  try
+    vButton := TButton(Sender);
+    if (FOperator = #0) and (FNum1.Length <= 9) then // handling num1
+    begin
+      HandleInput(Sender, FNum1);
+    end
+    else if (FOperator <> #0) and (FNum2.Length <= 9) then // handling num2
+    begin
       HandleInput(Sender, FNum2);
+    end;
+    DisplayOnOperatorClick;
+  except
+    on E: Exception do
+    begin
+      MessageDlg('Some error occured: ' + E.Message, mtError, [mbOk], 0);
+    end;
   end;
-
-  DisplayOnOperatorClick;
 end;
 
 procedure TfrmCalculator.OperatorBtnClick(Sender: TObject);
 var
   vButton: TButton;
 begin
-  vButton := TButton(Sender);
-
-  if (FNum1 = '') and (FNum2 = '') then
-  begin
-    FNum1 := '0';
-  end
-  else if (FResult <> 0) then
-  begin
-    FNum2 := '';
-  end
-  else if (FNum1 <> '') and (FNum2 <> '') then
-  begin
-    FResult := PerformCalcualtion(StrToFloat(FNum1), FOperator,
-      StrToFloat(FNum2));
-    FNum1 := FloatToStr(FResult);
-    FNum2 := '';
+  try
+    vButton := TButton(Sender);
+    if (FNum1 = '') and (FNum2 = '') then
+    begin
+      FNum1 := '0';
+    end
+    else if (FResult <> 0) then
+    begin
+      FNum2 := '';
+    end
+    else if (FNum1 <> '') and (FNum2 <> '') then
+    begin
+      FResult := PerformCalcualtion(StrToFloat(FNum1), FOperator,
+        StrToFloat(FNum2));
+      FNum1 := FloatToStr(FResult);
+      FNum2 := '';
+    end;
+    FOperator := vButton.Caption[1];
+    DisplayOnOperatorClick;
+  except
+    on E: Exception do
+    begin
+      MessageDlg('Some error occured: ' + E.Message, mtError, [mbOk], 0);
+    end;
   end;
-
-  FOperator := vButton.Caption[1];
-  DisplayOnOperatorClick;
 end;
 
-function TfrmCalculator.PerformCalcualtion(ANum1: Double; Aoperator: char;
+function TfrmCalculator.PerformCalcualtion(ANum1: Double; Aoperator: Char;
   ANum2: Double): Double;
 var
   vMathOperation: TBasicMathOperationService;
@@ -342,51 +382,58 @@ end;
 
 procedure TfrmCalculator.redDisplayKeyPress(Sender: TObject; var Key: Char);
 begin
-  if not(Key in ['0' .. '9', '+', '-', '*', '/', #8]) then
-  begin
-    Key := #0;
-    Exit;
-  end;
-  if Key in ['0' .. '9'] then
-  begin
-    if (FOperator = #0) and (FNum2 = '') then
-      FNum1 := FNum1 + Key
-    else
-      FNum2 := FNum2 + Key;
-  end
-  else if Key in ['+', '-', '÷', 'x'] then
-  begin
-    FOperator := Key;
-    if (FNum1 <> '') and (FNum2 <> '') then
+  try
+    if not(Key in ['0' .. '9', '+', '-', '*', '/', #8]) then
     begin
-      FResult := 0;
-      FResult := PerformCalcualtion(StrToFloat(FNum1), FOperator, StrToFloat(FNum2));
-      FNum1 := FloatToStr(FResult);
-      FNum2 := '';
+      Key := #0;
+      Exit;
     end;
-    redDisplay.Text := FNum1;
-    redDisplay.Lines.Add(FNum2);
-  end
-  else if Key = #8 then
-  begin
-    if (FOperator = #0) and (FNum2 = '') then
+    if Key in ['0' .. '9'] then
     begin
-      Delete(FNum1, FNum1.Length, 1);
-      redDisplay.Text := FNum1;
+      if (FOperator = #0) and (FNum2 = '') then
+        FNum1 := FNum1 + Key
+      else
+        FNum2 := FNum2 + Key;
     end
-    else if (FNum2 = '') and (FOperator <> '') then
+    else if Key in ['+', '-', '÷', 'x'] then
     begin
-      FOperator := #0;
+      FOperator := Key;
+      if (FNum1 <> '') and (FNum2 <> '') then
+      begin
+        FResult := 0;
+        FResult := PerformCalcualtion(StrToFloat(FNum1), FOperator,
+          StrToFloat(FNum2));
+        FNum1 := FloatToStr(FResult);
+        FNum2 := '';
+      end;
       redDisplay.Text := FNum1;
-    end
-    else
-    begin
-      Delete(FNum2, FNum2.Length, 1);
-      redDisplay.Text := FNum1 + FOperator;
       redDisplay.Lines.Add(FNum2);
+    end
+    else if Key = #8 then
+    begin
+      if (FOperator = #0) and (FNum2 = '') then
+      begin
+        Delete(FNum1, FNum1.Length, 1);
+        redDisplay.Text := FNum1;
+      end
+      else if (FNum2 = '') and (FOperator <> '') then
+      begin
+        FOperator := #0;
+        redDisplay.Text := FNum1;
+      end
+      else
+      begin
+        Delete(FNum2, FNum2.Length, 1);
+        redDisplay.Text := FNum1 + FOperator;
+        redDisplay.Lines.Add(FNum2);
+      end;
+    end;
+  except
+    on E: Exception do
+    begin
+      MessageDlg('Some error occured: ' + E.Message, mtError, [mbOk], 0);
     end;
   end;
 end;
-
 
 end.
